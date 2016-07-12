@@ -1,16 +1,16 @@
 {
-  "name": "bloc-frontend-project-starter",
-  "version": "0.0.2",
-  "description": "Starter project for the Bloc Frontend Web Development",
+  "name": "myTime",
+  "version": "0.0.1",
+  "description": "A time-management system based on the Pomodoro technique using AngularJS and Firebase",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bloc/bloc-frontend-project-starter"
+    "url": "https://github.com/ghbooth12/myTime"
   },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Bloc Inc",
+  "author": "Gahee Heo",
   "license": "ISC",
   "dependencies": {
     "hapi": "~7.5.0",
