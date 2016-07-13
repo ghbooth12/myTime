@@ -4,7 +4,6 @@
     .controller('MainCtrl', MainCtrl);
 
   function MainCtrl() {
-    this.run = false;
-    this.init = true;
+    this.onBreak = false;
   }
 })();

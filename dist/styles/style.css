@@ -19,7 +19,7 @@ a:focus, a:hover {
   vertical-align: middle;
 }
 
-.timer my-timer {
+.timer .my-timer {
   font-size: 7rem;
   display: block;
   margin-bottom: 10px;

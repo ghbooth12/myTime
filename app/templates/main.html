@@ -1,9 +1,10 @@
 <div class="container">
   <div class="timer">
-    <my-timer run="{{ main.run }}" init="{{ main.init }}"></my-timer>
-    <a class="btn-lg btn-success" ng-show="!main.run && main.init" ng-click="main.init = false">Start</a>
-    <a class="btn-lg btn-danger" ng-show="!main.init" ng-click="main.run = false; main.init = true">Reset</a>
-    <a class="btn-lg btn-primary" ng-show="!main.run && !main.init" ng-click="main.run = true">Pause</a>
-    <a class="btn-lg btn-success" ng-show="main.run && !main.init" ng-click="main.run = false">Resume</a>
+    <div class="work" ng-show="!main.onBreak">
+      <my-timer on-break="{{ main.onBreak }}"></my-timer>
+    </div>
+    <div class="break" ng-show="main.onBreak">
+      <my-timer on-break="{{ main.onBreak }}"></my-timer>
+    </div>
   </div>
 </div>
