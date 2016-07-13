@@ -4,7 +4,7 @@
     <ng-include src="'/templates/directives/innerTimer.html'"></ng-include>
   </div>
   <div class="break" ng-show="onBreak">
-    <h2 class="text-center">Break</h2>
+    <h2 class="text-center" ng-bind="msgForBreak"></h2>
     <ng-include src="'/templates/directives/innerTimer.html'"></ng-include>
   </div>
 </div>
