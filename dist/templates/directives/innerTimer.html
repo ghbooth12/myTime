@@ -1,4 +1,4 @@
-<div class="my-timer" ng-bind="formatted"></div>
+<div class="my-timer" ng-bind="formatted | timecode"></div>
 <a class="btn-lg btn-success" ng-show="!run && init" ng-click="start()">Start</a>
 <a class="btn-lg btn-danger" ng-show="!init" ng-click="reset()">Reset</a>
 <a class="btn-lg btn-primary" ng-show="run" ng-click="pause()">Pause</a>

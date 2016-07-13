@@ -4,16 +4,6 @@
     .directive('myTimer', ['$interval', 'INITIAL_MINUTES', myTimer]);
 
   function myTimer($interval, INITIAL_MINUTES) {
-    var formatTimer = function(seconds) {
-      var min = Math.floor(seconds / 60);
-      var sec = seconds % 60;
-
-      if (min < 10) { min = "0" + min; }
-      if (sec < 10) { sec = "0" + sec; }
-
-      return min + ":" + sec;
-    };
-
     return {
       templateUrl: '/templates/directives/my_timer.html',
       replace: true,
@@ -27,7 +17,7 @@
         scope.onBreak = false;
         scope.run = false;
         scope.init = true;
-        scope.formatted = formatTimer(wholeSeconds);
+        scope.formatted = wholeSeconds;
         scope.msgForBreak = "Break";
 
         scope.start = function() {
@@ -53,7 +43,7 @@
             wholeSeconds = INITIAL_MINUTES.WORK_TIME * 60;
           }
           stopTimer();
-          scope.formatted = formatTimer(wholeSeconds);
+          scope.formatted = wholeSeconds;
           scope.run = false;
           scope.init = true;
         };
@@ -74,7 +64,7 @@
               scope.run = false;
               scope.init = true;
             }
-            scope.formatted = formatTimer(wholeSeconds);
+            scope.formatted = wholeSeconds;
           }, 1000);
         }
 
