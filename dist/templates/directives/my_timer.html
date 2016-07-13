@@ -1,7 +1,10 @@
-<div class="work" ng-show="!onBreak">
-  <div class="my-timer" ng-bind="formatted"></div>
-  <a class="btn-lg btn-success" ng-show="!run && init" ng-click="start()">Start</a>
-  <a class="btn-lg btn-danger" ng-show="!init" ng-click="reset()">Reset</a>
-  <a class="btn-lg btn-primary" ng-show="run" ng-click="pause()">Pause</a>
-  <a class="btn-lg btn-success" ng-show="!run && !init" ng-click="resume()">Resume</a>
+<div class="timer">
+  <div class="work" ng-show="!onBreak">
+    <h2 class="text-center">Work</h2>
+    <ng-include src="'/templates/directives/innerTimer.html'"></ng-include>
+  </div>
+  <div class="break" ng-show="onBreak">
+    <h2 class="text-center">Break</h2>
+    <ng-include src="'/templates/directives/innerTimer.html'"></ng-include>
+  </div>
 </div>
