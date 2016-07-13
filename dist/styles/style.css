@@ -1,0 +1,26 @@
+/* Global Styling */
+a {
+  cursor: pointer;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+}
+
+/* Custom Styling */
+.container {
+  display: table;
+  text-align: center;
+  min-height: 600px;
+}
+
+.timer {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.timer my-timer {
+  font-size: 7rem;
+  display: block;
+  margin-bottom: 10px;
+}

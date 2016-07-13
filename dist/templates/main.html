@@ -1,1 +1,9 @@
-This is main.
+<div class="container">
+  <div class="timer">
+    <my-timer run="{{ main.run }}" init="{{ main.init }}"></my-timer>
+    <a class="btn-lg btn-success" ng-show="!main.run && main.init" ng-click="main.init = false">Start</a>
+    <a class="btn-lg btn-danger" ng-show="!main.init" ng-click="main.run = false; main.init = true">Reset</a>
+    <a class="btn-lg btn-primary" ng-show="!main.run && !main.init" ng-click="main.run = true">Pause</a>
+    <a class="btn-lg btn-success" ng-show="main.run && !main.init" ng-click="main.run = false">Resume</a>
+  </div>
+</div>
