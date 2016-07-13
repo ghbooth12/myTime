@@ -22,11 +22,13 @@
       link: function(scope, element, attrs) {
         var timeoutId = null;
         var wholeSeconds = INITIAL_MINUTES.WORK_TIME * 60;
+        var sessionCount = 1;
 
         scope.onBreak = false;
         scope.run = false;
         scope.init = true;
         scope.formatted = formatTimer(wholeSeconds);
+        scope.msgForBreak = "Break";
 
         scope.start = function() {
           runTimer();
@@ -61,17 +63,38 @@
           timeoutId = $interval(function() {
             if (wholeSeconds > 0) {
               wholeSeconds--;
-              scope.formatted = formatTimer(wholeSeconds);
             } else {
               scope.onBreak = !scope.onBreak;
-              scope.reset();
+              if (scope.onBreak) {
+                wholeSeconds = getBreakTime() * 60;
+              } else {
+                wholeSeconds = INITIAL_MINUTES.WORK_TIME * 60;
+              }
+              stopTimer();
+              scope.run = false;
+              scope.init = true;
             }
+            scope.formatted = formatTimer(wholeSeconds);
           }, 1000);
         }
 
         function stopTimer() {
           $interval.cancel(timeoutId);
           timeoutId = undefined;
+        }
+
+        function getBreakTime() {
+          var time;
+          if (sessionCount < 4) {
+            scope.msgForBreak = "Break";
+            time = INITIAL_MINUTES.BREAK_TIME;
+            sessionCount++;
+          } else {
+            scope.msgForBreak = "Enjoy your long break!";
+            time = INITIAL_MINUTES.LONG_BREAK;
+            sessionCount = 1;
+          }
+          return time;
         }
 
         element.on('$destroy', function() {
