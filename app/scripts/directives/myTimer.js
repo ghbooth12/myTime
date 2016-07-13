@@ -1,9 +1,9 @@
 (function() {
   angular
     .module('myTime')
-    .directive('myTimer', ['$interval', myTimer]);
+    .directive('myTimer', ['$interval', 'INITIAL_MINUTES', myTimer]);
 
-  function myTimer($interval) {
+  function myTimer($interval, INITIAL_MINUTES) {
     var formatTimer = function(seconds) {
       var min = Math.floor(seconds / 60);
       var sec = seconds % 60;
@@ -21,9 +21,9 @@
       scope: {},
       link: function(scope, element, attrs) {
         var timeoutId = null;
-        var initialMin = 25;
-        var wholeSeconds = initialMin * 60;
+        var wholeSeconds = INITIAL_MINUTES.WORK_TIME * 60;
 
+        scope.onBreak = false;
         scope.run = false;
         scope.init = true;
         scope.formatted = formatTimer(wholeSeconds);
@@ -36,7 +36,6 @@
 
         scope.pause = function() {
           stopTimer();
-          scope.formatted = formatTimer(wholeSeconds);
           scope.run = false;
         };
 
@@ -46,7 +45,11 @@
         };
 
         scope.reset = function() {
-          wholeSeconds = initialMin * 60;
+          if (scope.onBreak) {
+            wholeSeconds = INITIAL_MINUTES.BREAK_TIME * 60;
+          } else {
+            wholeSeconds = INITIAL_MINUTES.WORK_TIME * 60;
+          }
           stopTimer();
           scope.formatted = formatTimer(wholeSeconds);
           scope.run = false;
@@ -58,10 +61,11 @@
           timeoutId = $interval(function() {
             if (wholeSeconds > 0) {
               wholeSeconds--;
+              scope.formatted = formatTimer(wholeSeconds);
             } else {
-              stopTimer();
+              scope.onBreak = !scope.onBreak;
+              scope.reset();
             }
-            scope.formatted = formatTimer(wholeSeconds);
           }, 1000);
         }
 

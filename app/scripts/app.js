@@ -1,6 +1,10 @@
 (function() {
   angular
     .module('myTime', ['ui.router', 'firebase'])
+    .constant('INITIAL_MINUTES', {
+      'WORK_TIME': 25,
+      'BREAK_TIME': 5
+    })
     .config(config);
 
   function config($stateProvider, $locationProvider) {
