@@ -4,37 +4,55 @@
     .directive('myTimer', ['$interval', myTimer]);
 
   function myTimer($interval) {
+    var formatTimer = function(seconds) {
+      var min = Math.floor(seconds / 60);
+      var sec = seconds % 60;
+
+      if (min < 10) { min = "0" + min; }
+      if (sec < 10) { sec = "0" + sec; }
+
+      return min + ":" + sec;
+    };
+
     return {
+      templateUrl: '/templates/directives/my_timer.html',
+      replace: true,
+      restrict: 'E',
       scope: {},
       link: function(scope, element, attrs) {
+        var timeoutId = null;
         var initialMin = 25;
         var wholeSeconds = initialMin * 60;
-        var timeoutId = null;
 
-        attrs.$observe('run', function(str) {
-          var bool = (str === "true");
-          scope.run = bool;
+        scope.run = false;
+        scope.init = true;
+        scope.formatted = formatTimer(wholeSeconds);
 
-          if (scope.run) {
-            stopTimer();
-            formatTimer(wholeSeconds);
-          } else if (!scope.run && !scope.init) {
-            runTimer();
-          }
-        });
+        scope.start = function() {
+          runTimer();
+          scope.run = true;
+          scope.init = false;
+        };
 
-        attrs.$observe('init', function(str) {
-          var bool = (str === "true");
-          scope.init = bool;
+        scope.pause = function() {
+          stopTimer();
+          scope.formatted = formatTimer(wholeSeconds);
+          scope.run = false;
+        };
 
-          if (scope.init) {
-            wholeSeconds = initialMin * 60;
-            stopTimer();
-            formatTimer(wholeSeconds);
-          } else if (!scope.run && !scope.init) {
-            runTimer();
-          }
-        });
+        scope.resume = function() {
+          runTimer();
+          scope.run = true;
+        };
+
+        scope.reset = function() {
+          wholeSeconds = initialMin * 60;
+          stopTimer();
+          scope.formatted = formatTimer(wholeSeconds);
+          scope.run = false;
+          scope.init = true;
+        };
+
 
         function runTimer() {
           timeoutId = $interval(function() {
@@ -43,7 +61,7 @@
             } else {
               stopTimer();
             }
-            formatTimer(wholeSeconds);
+            scope.formatted = formatTimer(wholeSeconds);
           }, 1000);
         }
 
@@ -55,17 +73,7 @@
         element.on('$destroy', function() {
           stopTimer();
         });
-
-        function formatTimer(seconds) {
-          var min = Math.floor(seconds / 60);
-          var sec = seconds % 60;
-
-          if (min < 10) { min = "0" + min; }
-          if (sec < 10) { sec = "0" + sec; }
-
-          element.text(min + ":" + sec);
-        }
-      }
-    };
-  }
+      } // end link
+    }; // end return
+  } // end myTimer
 })();
