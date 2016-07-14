@@ -4,15 +4,20 @@
       <my-timer></my-timer>
     </div>
     <div class="col-sm-4">
-      <h3>Task History</h3>
-      <form ng-submit="main.addTask(main.taskItem)" class="clearfix">
-        <input type="text" class="form-control" ng-model="main.taskItem">
-        <input type="submit" class="btn btn-default pull-right" value="Add Task">
-      </form>
+      <header>
+        <h3>Task History</h3>
+        <form ng-submit="main.addTask(main.taskItem)" class="clearfix">
+          <input type="text" class="form-control" ng-model="main.taskItem">
+          <input type="submit" class="btn btn-default pull-right" value="Add Task">
+        </form>
+      </header>
 
-      <ul>
-        <li ng-repeat="task in main.tasks.all" ng-bind="task.item"></li>
-      </ul>
+      <table class="table table-striped">
+        <tr ng-repeat="task in main.tasks.all | orderBy : '-createdAt'">
+          <td ng-bind="task.item"></td>
+          <td ng-bind="task.createdAt | date : 'short'"></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
