@@ -1,9 +1,9 @@
 (function() {
   angular
     .module('myTime')
-    .directive('myTimer', ['$interval', 'INITIAL_MINUTES', myTimer]);
+    .directive('myTimer', ['$interval', 'INITIAL_MINUTES', 'SoundPlayer', myTimer]);
 
-  function myTimer($interval, INITIAL_MINUTES) {
+  function myTimer($interval, INITIAL_MINUTES, SoundPlayer) {
     return {
       templateUrl: '/templates/directives/my_timer.html',
       replace: true,
@@ -47,6 +47,12 @@
           scope.run = false;
           scope.init = true;
         };
+
+        scope.$watch('formatted', function(newVal) {
+          if (newVal === 0) {
+            SoundPlayer.play();
+          }
+        });
 
 
         function runTimer() {
