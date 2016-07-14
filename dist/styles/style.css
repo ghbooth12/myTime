@@ -18,9 +18,8 @@ a:focus, a:hover {
   text-decoration: none;
 }
 
-ul {
-  list-style: none;
-  padding-left: 0;
+header {
+  margin: 10px 30px;
 }
 
 /* Custom Styling */
@@ -47,13 +46,26 @@ ul {
 }
 
 .container .col-sm-4 {
-  background-color: #bbb;
+  background-color: #ccc;
   min-height: 600px;
-  padding: 10px 30px;
+  padding: 0;
   color: #333;
   font-family: monospace;
 }
 
 .container input[type="submit"] {
-  margin-top: 10px;
+  margin: 10px 0 20px;
+}
+
+.table > tbody > tr > td {
+  padding: 10px 30px;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #ddd;
+}
+
+td:nth-child(2) {
+  color: #999;
+  font-size: 85%;
 }

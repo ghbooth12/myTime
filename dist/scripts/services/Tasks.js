@@ -11,7 +11,10 @@
       all: tasks,
       add: function(taskItem) {
         if (taskItem) {
-          tasks.$add({item: taskItem});
+          tasks.$add({
+            item: taskItem,
+            createdAt: new Date().getTime()
+          });
           this.taskItem = null;
         }
       }
