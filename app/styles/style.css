@@ -1,4 +1,15 @@
 /* Global Styling */
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+  margin: 10px 0;
+}
+
 a {
   cursor: pointer;
 }
@@ -7,8 +18,13 @@ a:focus, a:hover {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 /* Custom Styling */
-.container {
+.container .col-sm-8 {
   display: table;
   text-align: center;
   min-height: 600px;
@@ -28,4 +44,16 @@ a:focus, a:hover {
 .timer h2 {
   color: #999;
   font-family: monospace;
+}
+
+.container .col-sm-4 {
+  background-color: #bbb;
+  min-height: 600px;
+  padding: 10px 30px;
+  color: #333;
+  font-family: monospace;
+}
+
+.container input[type="submit"] {
+  margin-top: 10px;
 }
