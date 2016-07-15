@@ -1,6 +1,6 @@
 <div class="timer">
   <div class="work" ng-show="!onBreak">
-    <h2 class="text-center">Work</h2>
+    <h2 class="text-center" ng-bind="msgForSession"></h2>
     <ng-include src="'/templates/directives/innerTimer.html'"></ng-include>
   </div>
   <div class="break" ng-show="onBreak">
