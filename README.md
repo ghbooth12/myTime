@@ -12,7 +12,7 @@ My Time manages the Pomodoro sessions. When time is up, it will alert you with "
 ![](https://s3.us-east-2.amazonaws.com/project-screenshots-gahee/my-time-work-time.gif)
 ![](https://s3.us-east-2.amazonaws.com/project-screenshots-gahee/my-time-break-time.gif)
 
-Users can record completed tasks and view a history of the tasks.
+Users can record completed tasks and view a history of the tasks.<br>
 ![](https://s3.us-east-2.amazonaws.com/project-screenshots-gahee/my-time-add-task.gif)
 
 
